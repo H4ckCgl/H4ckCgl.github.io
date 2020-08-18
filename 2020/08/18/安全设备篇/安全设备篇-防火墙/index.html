@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"h4ckcgl.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"Pisces | Gemini":240,"width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"信息查找","hits_empty":"没有搜到到这个结果: ${query}","hits_stats":"${hits} 查找时间用: ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0x00 定义​        防火墙（英语：Firewall）在计算机科学领域中是一个架设在互联网与企业内网之间的信息安全系统，根据企业预定的策略来监控往来的传输。防火墙可能是一台专属的网络设备或是运行于主机上来检查各个网络接口上的网络传输。它是目前最重要的一种网络防护设备。（维基百科） 0x01 位置​        从专业角度来说，防火墙是位于两个(或多个)网络间，实行网络间访问或控制的一组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全设备篇:防火墙">
+<meta property="og:url" content="https://h4ckcgl.github.io/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%81%AB%E5%A2%99/index.html">
+<meta property="og:site_name" content="H4ckCgl&#39;Blog">
+<meta property="og:description" content="0x00 定义​        防火墙（英语：Firewall）在计算机科学领域中是一个架设在互联网与企业内网之间的信息安全系统，根据企业预定的策略来监控往来的传输。防火墙可能是一台专属的网络设备或是运行于主机上来检查各个网络接口上的网络传输。它是目前最重要的一种网络防护设备。（维基百科） 0x01 位置​        从专业角度来说，防火墙是位于两个(或多个)网络间，实行网络间访问或控制的一组">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzldsv98j31a70u0azt.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzm1dzzrj30x60u07wh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzlfghn0j31a30u0wqw.jpg">
+<meta property="article:published_time" content="2020-08-18T03:27:54.000Z">
+<meta property="article:modified_time" content="2020-08-18T07:22:09.731Z">
+<meta property="article:author" content="H4ckCgl">
+<meta property="article:tag" content="安全设备，防火墙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzldsv98j31a70u0azt.jpg">
+
+<link rel="canonical" href="https://h4ckcgl.github.io/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%81%AB%E5%A2%99/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>安全设备篇:防火墙 | H4ckCgl'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">H4ckCgl'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">走的慢，走的稳</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-存档">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>存档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://h4ckcgl.github.io/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%81%AB%E5%A2%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="H4ckCgl">
+      <meta itemprop="description" content="走的慢，走的稳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4ckCgl'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安全设备篇:防火墙
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-18 11:27:54 / Modified: 15:22:09" itemprop="dateCreated datePublished" datetime="2020-08-18T11:27:54+08:00">2020-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">安全设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="0x00-定义"><a href="#0x00-定义" class="headerlink" title="0x00 定义"></a>0x00 定义</h3><p>​        <strong>防火墙</strong>（英语：<strong>Firewall</strong>）在计算机科学领域中是一个架设在互联网与企业内网之间的信息安全系统，根据企业预定的策略来监控往来的传输。防火墙可能是一台专属的网络设备或是运行于主机上来检查各个网络接口上的网络传输。它是目前最重要的一种网络防护设备。（维基百科）</p>
+<h3 id="0x01-位置"><a href="#0x01-位置" class="headerlink" title="0x01 位置"></a>0x01 位置</h3><p>​        从专业角度来说，防火墙是位于两个(或多个)网络间，实行网络间访问或控制的一组组件集合之硬件或软件。（维基百科）</p>
+<h3 id="0x02-类型"><a href="#0x02-类型" class="headerlink" title="0x02 类型"></a>0x02 类型</h3><p>​        防火墙一般按照物理特性、性能、结构、技术、网络位置等4方面分类。</p>
+<h4 id="1、按照物理特性分类"><a href="#1、按照物理特性分类" class="headerlink" title="1、按照物理特性分类"></a>1、按照物理特性分类</h4><p>​        <strong>软件型防火墙：</strong>防火墙是个软件程序主要部署在服务器上、或主机上。常见的是Windows系统自带的防火墙。</p>
+<p>​        <strong>硬件型防火墙：</strong>防火墙是个硬件程序，部署在网关或两个网络之间。常见有华为防火墙、思科防火墙。</p>
+<h4 id="2、按照性能分类"><a href="#2、按照性能分类" class="headerlink" title="2、按照性能分类"></a>2、按照性能分类</h4><p>​        <strong>百兆级防火墙：</strong>通道带宽是百兆。</p>
+<p>​        <strong>千兆级防火墙：</strong>通道带宽是千兆。</p>
+<h4 id="3、按照结构分类"><a href="#3、按照结构分类" class="headerlink" title="3、按照结构分类"></a>3、按照结构分类</h4><p>​        <strong>单一主机防火墙：</strong>是最为传统的防火墙，也是平时我们使用最多的一种，独立于其他网络设备，位于网络边界。这种防火墙其实与一台计算机主机的内部结构差不多，同样包括CPU、内存、硬盘等基本组件，当然主板更是不能少了，且主板上也有南、北桥芯片。单一主机防火墙的主要特点就是功能强大，工作效率高，但是价格也非常高，一般适用于大型的企业网络环境。</p>
+<p>​        <strong>路由集成防火墙：</strong>严格来说应该是路由器的一种，为连接的网络提供路由选择才是它的本职工作。随着防火墙技术的发展及应用需求的提高，生产上开始将单一主机防火墙中的部分技术应用于路由器的开发设计当中，因此才产生了这种所谓的路由器集成防火墙。虽然功能远远不能与单一主机防火墙相提并论，但是应付一般的非法入侵的能力还是有的，最主要的是这种防火墙价格比较便宜，非常适用于中小型企业网络。</p>
+<p>​        <strong>分布式防火墙：</strong>又称<strong>嵌入式防火墙</strong>，不再像单一主机防火墙那样是一个独立的硬件实体，而是由多个软、硬件组成的系统组合而成。单一主机防火墙和路由器集成防火墙一般都是工作在网络边界上，但是分布式防火墙就不同了，它是渗透于网络的每一台主机中，对整个内部网络的主机实施保护。在网络服务器中，通常会安装一个用于防火墙系统的管理软件，在服务器及各主机上安装有集成网卡功能的PCI（外设部件接口）防火墙卡。这样一块防火墙卡同时兼有网卡和防火墙的双重功能。这样一个防火墙系统就可以彻底保护内部网络。各主机把任何其他主机发送的通信连接都视为“不可信”的，都需要严格过滤。而不是传统边界防火墙那样，仅对外部网络发出的通信请求“不信任”。</p>
+<h4 id="4、按照技术分类"><a href="#4、按照技术分类" class="headerlink" title="4、按照技术分类"></a>4、按照技术分类</h4><p>​        <strong>包过滤防火墙：</strong>通过流经防火墙的数据包的包头决定，数据包进行放行还是抛弃。</p>
+<p>​        <strong>应用系统防火墙：</strong>网络应用层上建立协议过滤和转发功能。它针对特定的网络应用服务协议使用指定的数据过滤逻辑，并在过滤的同时，对数据包进行必要的分析、登记和统计，形成报告</p>
+<p>​        <strong>状态检测防火墙：</strong>在网络层有一个检查引擎截获数据包并抽取出与应用层状态有关的信息，并以此为依据决定对该连接是接受还是拒绝</p>
+<p>​        <strong>UTM：</strong>第一代防火墙和IPS功能，但它只是把多种安全引擎叠加在了一起，这会使数据流在每个安全引擎分别执行解码、状态复原等操作，导致大量的资源消耗</p>
+<p>​        **下一代防火墙（NGFW）:**下一代防火墙采用一体化引擎，可一次性对数据流完成识别、扫描，达到更高的性能，通过融合，还可让管理者更加轻松</p>
+<h4 id="5、按照网络位置划分"><a href="#5、按照网络位置划分" class="headerlink" title="5、按照网络位置划分"></a>5、按照网络位置划分</h4><p>​        <strong>边界防火墙：</strong>般安装在内部网络与外部网络的边界连接处，主要被用来隔离内外网络，这种防火墙无论是性能还是工作效率都是最高的，但是在管理员技术水平方面的要求也是非常高的，同时价格也较贵。</p>
+<p>​        <strong>个人防火墙：</strong>软件防火墙，工作在每一台计算机中，只能防护本地计算机的安全工作，目前有许多防火墙软件都是共享的，所以这种防火墙基本不需要任何投资。</p>
+<p>​        <strong>混合型防火墙：</strong>主要是指前面介绍过的分布式防火墙或者嵌入式防火墙，它本身就是一整套防火墙系统，包括若干个软件和硬件部分，分布在内外网络边界和内部网络的计算机之间，既对内外网络之间的数据进行过滤和拦截，又可以对网络内部的各主机间的通信进行隔离，它属于一种最新式的防火墙技术，性能最好，价格也最贵。</p>
+<h3 id="0x03-原理-amp-功能"><a href="#0x03-原理-amp-功能" class="headerlink" title="0x03 原理&amp;功能"></a>0x03 原理&amp;功能</h3><p>​        通过对防火墙配置策略，对通过的数据包流量进行检测。数据包根据匹配规则决定对数据包进行的操作。释放or抛弃？</p>
+<p>​        隔绝两个网络间的数据传输，一定程度上，防止内部系统被入侵。属于系统的第一道防线。</p>
+<h4 id="1-保护脆弱的服务"><a href="#1-保护脆弱的服务" class="headerlink" title="1.保护脆弱的服务"></a>1.保护脆弱的服务</h4><p>​        通过过滤不安全的服务，Firewall可以极大地提高网络安全和减少子网中主机的风险。例如，Firewall可以禁止NIS、NFS服务通过，Firewall同时可以拒绝源路由和ICMP重定向封包。</p>
+<h4 id="2-控制对系统的访问"><a href="#2-控制对系统的访问" class="headerlink" title="2.控制对系统的访问"></a>2.控制对系统的访问</h4><p>​        Firewall可以提供对系统的访问控制。如允许从外部访问某些主机，同时禁止访问另外的主机。例如，Firewall允许外部访问特定的Mail Server和Web Server。</p>
+<h4 id="3-集中的安全管理"><a href="#3-集中的安全管理" class="headerlink" title="3.集中的安全管理"></a>3.集中的安全管理</h4><p>​        Firewall对企业内部网实现集中的安全管理，在Firewall定义的安全规则可以运行于整个内部网络系统，而无须在内部网每台机器上分别设立安全策略。Firewall可以定义不同的认证方法，而不需要在每台机器上分别安装特定的认证软件。外部用户也只需要经过一次认证即可访问内部网。</p>
+<h4 id="4-增强的保密性"><a href="#4-增强的保密性" class="headerlink" title="4.增强的保密性"></a>4.增强的保密性</h4><p>​        使用Firewall可以阻止攻击者获取攻击网络系统的有用信息，如Figer和DNS。</p>
+<h4 id="5-记录和统计网络利用数据以及非法使用数据"><a href="#5-记录和统计网络利用数据以及非法使用数据" class="headerlink" title="5.记录和统计网络利用数据以及非法使用数据"></a>5.记录和统计网络利用数据以及非法使用数据</h4><p>​        Firewall可以记录和统计通过Firewall的网络通讯，提供关于网络使用的统计数据，并且，Firewall可以提供统计数据，来判断可能的攻击和探测。</p>
+<h4 id="6-策略执行"><a href="#6-策略执行" class="headerlink" title="6.策略执行"></a>6.策略执行</h4><p>​        Firewall提供了制定和执行网络安全策略的手段。未设置Firewall时，网络安全取决于每台主机的用户。</p>
+<h3 id="0x04-性能指标"><a href="#0x04-性能指标" class="headerlink" title="0x04 性能指标"></a>0x04 性能指标</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzldsv98j31a70u0azt.jpg">
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzm1dzzrj30x60u07wh.jpg">
+
+<h3 id="0x05-优缺点"><a href="#0x05-优缺点" class="headerlink" title="0x05 优缺点"></a>0x05 优缺点</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuzlfghn0j31a30u0wqw.jpg"></p>
+<h3 id="0x06-常用命令"><a href="#0x06-常用命令" class="headerlink" title="0x06 常用命令"></a>0x06 常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;Zack_emm&#x2F;article&#x2F;details&#x2F;97495215</span><br><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;love_sunshine_999&#x2F;article&#x2F;details&#x2F;80617412</span><br><span class="line">不同防火墙配置命令不同，所以找了一篇文章</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x07-参考文章"><a href="#0x07-参考文章" class="headerlink" title="0x07 参考文章"></a>0x07 参考文章</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rammstein001/article/details/599036">https://blog.csdn.net/rammstein001/article/details/599036</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43950941/article/details/87884735">https://blog.csdn.net/weixin_43950941/article/details/87884735</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0dc4c7b6e814">https://www.jianshu.com/p/0dc4c7b6e814</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.longshunzhuangshi.com/yingxiaoruanjian/91.html">http://www.longshunzhuangshi.com/yingxiaoruanjian/91.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22861980">https://www.zhihu.com/question/22861980</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%EF%BC%8C%E9%98%B2%E7%81%AB%E5%A2%99/" rel="tag"># 安全设备，防火墙</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/17/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80-%E6%89%B9%E5%A4%84%E7%90%86/" rel="prev" title="信息安全基础:批处理">
+      <i class="fa fa-chevron-left"></i> 信息安全基础:批处理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">0x00 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">0x01 位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">0x02 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%8C%89%E7%85%A7%E7%89%A9%E7%90%86%E7%89%B9%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">1、按照物理特性分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%8C%89%E7%85%A7%E6%80%A7%E8%83%BD%E5%88%86%E7%B1%BB"><span class="nav-number">3.2.</span> <span class="nav-text">2、按照性能分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E6%8C%89%E7%85%A7%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="nav-number">3.3.</span> <span class="nav-text">3、按照结构分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E6%8C%89%E7%85%A7%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="nav-number">3.4.</span> <span class="nav-text">4、按照技术分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%8C%89%E7%85%A7%E7%BD%91%E7%BB%9C%E4%BD%8D%E7%BD%AE%E5%88%92%E5%88%86"><span class="nav-number">3.5.</span> <span class="nav-text">5、按照网络位置划分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E5%8E%9F%E7%90%86-amp-%E5%8A%9F%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">0x03 原理&amp;功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BF%9D%E6%8A%A4%E8%84%86%E5%BC%B1%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.1.</span> <span class="nav-text">1.保护脆弱的服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8E%A7%E5%88%B6%E5%AF%B9%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="nav-number">4.2.</span> <span class="nav-text">2.控制对系统的访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9B%86%E4%B8%AD%E7%9A%84%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86"><span class="nav-number">4.3.</span> <span class="nav-text">3.集中的安全管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%A2%9E%E5%BC%BA%E7%9A%84%E4%BF%9D%E5%AF%86%E6%80%A7"><span class="nav-number">4.4.</span> <span class="nav-text">4.增强的保密性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%AE%B0%E5%BD%95%E5%92%8C%E7%BB%9F%E8%AE%A1%E7%BD%91%E7%BB%9C%E5%88%A9%E7%94%A8%E6%95%B0%E6%8D%AE%E4%BB%A5%E5%8F%8A%E9%9D%9E%E6%B3%95%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">4.5.</span> <span class="nav-text">5.记录和统计网络利用数据以及非法使用数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%AD%96%E7%95%A5%E6%89%A7%E8%A1%8C"><span class="nav-number">4.6.</span> <span class="nav-text">6.策略执行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">5.</span> <span class="nav-text">0x04 性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">0x05 优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">7.</span> <span class="nav-text">0x06 常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">8.</span> <span class="nav-text">0x07 参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="H4ckCgl"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">H4ckCgl</p>
+  <div class="site-description" itemprop="description">走的慢，走的稳</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/" title="GitHub → https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">[object Object]</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
