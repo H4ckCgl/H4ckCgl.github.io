@@ -268,6 +268,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://h4ckcgl.github.io/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-IDS&IPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="H4ckCgl">
+      <meta itemprop="description" content="走的慢，走的稳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4ckCgl'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-IDS&IPS/" class="post-title-link" itemprop="url">安全设备篇:IDS&IPS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-18 11:27:54" itemprop="dateCreated datePublished" datetime="2020-08-18T11:27:54+08:00">2020-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-21 10:06:33" itemprop="dateModified" datetime="2020-08-21T10:06:33+08:00">2020-08-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">安全设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="0x00-定义"><a href="#0x00-定义" class="headerlink" title="0x00 定义"></a>0x00 定义</h3><p>​    <strong>IDS：</strong>英文 intrusion detection system入侵检测系统是一种对网络传输进行即时监视，在发现可疑传输时发出警报或者采取主动反应措施的网络安全设备。它与其他网络安全设备的不同之处便在于，IDS是一种积极主动的安全防护技术。</p>
+<p>​    <strong>IPS：</strong> Intrusion Prevention System是电脑网络安全设施，是对防病毒软件（Antivirus Programs）和防火墙（Packet Filter, Application Gateway）的补充。 入侵预防系统（Intrusion-prevention system）是一部能够监视网络或网络设备的网络资料传输行为的计算机网络安全设备，能够即时的中断、调整或隔离一些不正常或是具有伤害性的网络资料传输行为。</p>
+<p>​    **IPS 与IDS 区别 **</p>
+<p>​            IDS：只能检测</p>
+<p>​            IPS：既能检测，也能防御</p>
+<p>​    <strong>那为什么许多企业需要部署IDS？</strong></p>
+<p>​            ids与ips联入网络方式不同，造成对系统的影响不同，ips运行时，需要消耗大量带宽。</p>
+<h3 id="0x01-位置"><a href="#0x01-位置" class="headerlink" title="0x01 位置"></a>0x01 位置</h3><p>​    <strong>IDS：</strong>并联部署，可部署在整个局域网，一般部署在与外网交互接口，防火墙后面。需要流经流量过少。</p>
+<p>​    <strong>IPS：</strong>串联部署，串联部署一般需要网络流量穿过ips，并对数据进行处理，处理时需要消耗大量带宽。一般只部署在核心网络等重要局域往。</p>
+<h3 id="0x02-分类"><a href="#0x02-分类" class="headerlink" title="0x02 分类"></a>0x02 分类</h3><h4 id="1、入侵检测系统（IDS）"><a href="#1、入侵检测系统（IDS）" class="headerlink" title="1、入侵检测系统（IDS）"></a>1、入侵检测系统（IDS）</h4><p>​        一般来说，入侵检测系统可分为主机型和网络型。<br>​        主机型入侵检测系统往往以系统日志、应用程序日志等作为数据源，当然也可以通过其他手段（如监督系统调用）从所在的主机收集信息进行分析。主机型入侵检测系统保护的一般是所在的系统。<br>​        网络型入侵检测系统的数据源则是网络上的数据包。往往将一台机子的网卡设于混杂模式（promisc mode）,监听所有本网段内的数据包并进行判断。一般网络型入侵检测系统担负着保护整个网段的任务。<br>​        不难看出，网络型IDS的优点主要是简便：一个网段上只需安装一个或几个这样的系统，便可以监测整个网段的情况。</p>
+<h4 id="2、入侵防范系统（IPS）"><a href="#2、入侵防范系统（IPS）" class="headerlink" title="2、入侵防范系统（IPS）"></a>2、入侵防范系统（IPS）</h4><p>​        如同IDS一样，IPS同样分为主机入侵防御系统（HIPS）和网络入侵防御系统（NIPS）<br>​        HIPS是一种能监控你电脑中文件的运行和文件运用了其他的文件以及文件对注册表的修改，并向你报告请求允许的软件。如果你阻止了，那么它将无法运行或者更改。比如你双击了一个病毒程序，HIPS软件跳出来报告而你阻止了，那么病毒还是没有运行的。<br>​        NIPS通过检测流经的网络流量，提供对网络系统的安全保护。NIPS通常被设计成类似于交换机的网络设备，提供线速吞吐速率以及多个网络端口，因此需要具备很高的性能，以免成为网络的瓶颈。</p>
+<h3 id="0x03-原理"><a href="#0x03-原理" class="headerlink" title="0x03 原理"></a>0x03 原理</h3><h4 id="1、入侵检测系统（IDS）-1"><a href="#1、入侵检测系统（IDS）-1" class="headerlink" title="1、入侵检测系统（IDS）"></a>1、入侵检测系统（IDS）</h4><p>​        入侵检测技术（IDS）是一种主动保护自己免受攻击的一种网络安全技术。作为防火墙的合理补充，入侵检测技术能够帮助系统对付网络攻击，扩展了系统管理员的安全管理能力（包括安全审计、监视、攻击识别和响应），提高了网络安全基础结构的完整性。入侵检测系统在防火墙之后对网络活动进行实时检测。许多情况下，由于可以记录和禁止网络活动，所以入侵检测系统是防火墙的延续。它们可以和防火墙与路由器配合工作。</p>
+<p>​        IDS扫描当前网络的活动，监视和记录网络的流量，根据定义好的规则来过滤从主机网卡到网线上的流量，提供实时报警。网络扫描器检测主机上先前设置的漏洞，而 IDS 监视和记录网络流量。如果在同一台主机上运行IDS和扫描器的话，配置合理的IDS会发出许多报警。</p>
+<h4 id="2、入侵防御系统（IPS）"><a href="#2、入侵防御系统（IPS）" class="headerlink" title="2、入侵防御系统（IPS）"></a>2、入侵防御系统（IPS）</h4><p>　　防火墙是实施访问控制策略的系统，对流经的网络流量进行检查，拦截不符合安全策略的数据包。入侵检测技术(IDS)通过监视网络或系统资源，寻找违反安全策略的行为或攻击迹象，并发出报警。传统的防火墙旨在拒绝那些明显可疑的网络流量，但仍然允许某些流量通过，因此防火墙对于很多入侵攻击仍然无计可施。绝大多数 IDS 系统都是被动的，而不是主动的。也就是说，在攻击实际发生之前，它们往往无法预先发出警报。而IPS则倾向于提供主动防护，其设计宗旨是预先对入侵活动和攻击性网络流量进行拦截，避免其造成损失，而不是简单地在恶意流量传送时或传送后才发出警报。IPS 是通过直接嵌入到网络流量中实现这一功能的，即通过一个网络端口接收来自外部系统的流量，经过检查确认其中不包含异常活动或可疑内容后，再通过另外一个端口将它传送到内部系统中。这样一来，有问题的数据包，以及所有来自同一数据流的后续数据包，都能在IPS设备中被清除掉。</p>
+<p>​        IPS实现实时检查和阻止入侵的原理在于IPS拥有数目众多的过滤器，能够防止各种攻击。当新的攻击手段被发现之后，IPS就会创建一个新的过滤器。IPS数据包处理引擎是专业化定制的集成电路，可以深层检查数据包的内容。如果有攻击者利用Layer 2(介质访问控制)至Layer 7(应用)的漏洞发起攻击，IPS能够从数据流中检查出这些攻击并加以阻止。传统的防火墙只能对Layer 3或Layer 4进行检查，不能检测应用层的内容。防火墙的包过滤技术不会针对每一字节进行检查，因而也就无法发现攻击活动，而IPS可以做到逐一字节地检查数据包。所有流经IPS的数据包都被分类，分类的依据是数据包中的报头信息，如源IP地址和目的IP地址、端口号和应用域。每种过滤器负责分析相对应的数据包。通过检查的数据包可以继续前进，包含恶意内容的数据包就会被丢弃，被怀疑的数据包需要接受进一步的检查。</p>
+<p>　　针对不同的攻击行为，IPS需要不同的过滤器。每种过滤器都设有相应的过滤规则，为了确保准确性，这些规则的定义非常广泛。在对传输内容进行分类时，过滤引擎还需要参照数据包的信息参数，并将其解析至一个有意义的域中进行上下文分析，以提高过滤准确性。</p>
+<h3 id="0x04-参考"><a href="#0x04-参考" class="headerlink" title="0x04 参考"></a>0x04 参考</h3><p><a target="_blank" rel="noopener" href="http://www.360doc.com/content/16/0510/05/32369957_558003249.shtml">http://www.360doc.com/content/16/0510/05/32369957_558003249.shtml</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.sohu.com/a/257963255_653604">https://www.sohu.com/a/257963255_653604</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
     <link itemprop="mainEntityOfPage" href="https://h4ckcgl.github.io/2020/08/17/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80-%E6%89%B9%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -538,7 +629,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -549,7 +640,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
