@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"h4ckcgl.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"Pisces | Gemini":240,"width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"信息查找","hits_empty":"没有搜到到这个结果: ${query}","hits_stats":"${hits} 查找时间用: ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0x00 概述​    广义病毒定义：能够引起计算机故障，破坏计算机数据的程序统记为计算机病毒。法律规定计算机病毒是指编织或者在计算机程序中插入破坏计算机功能或损坏计算机数据，影响计算机的使用并能自我复制的计算机指令或代码程序。     ​    狭义病毒定义：主要指传统型病毒，即依靠感染宿主文件，当宿主文件执行被加载时，病毒文件爆发并传播。 ​    广义病毒：狭义病毒、蠕虫、木马。 0x01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全设备-防病毒">
+<meta property="og:url" content="https://h4ckcgl.github.io/2020/08/24/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/2-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%97%85%E6%AF%92/index.html">
+<meta property="og:site_name" content="H4ckCgl&#39;Blog">
+<meta property="og:description" content="0x00 概述​    广义病毒定义：能够引起计算机故障，破坏计算机数据的程序统记为计算机病毒。法律规定计算机病毒是指编织或者在计算机程序中插入破坏计算机功能或损坏计算机数据，影响计算机的使用并能自我复制的计算机指令或代码程序。     ​    狭义病毒定义：主要指传统型病毒，即依靠感染宿主文件，当宿主文件执行被加载时，病毒文件爆发并传播。 ​    广义病毒：狭义病毒、蠕虫、木马。 0x01">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-08-24T00:42:14.000Z">
+<meta property="article:modified_time" content="2020-08-24T07:14:58.674Z">
+<meta property="article:author" content="H4ckCgl">
+<meta property="article:tag" content="安全设备">
+<meta property="article:tag" content="防病毒">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://h4ckcgl.github.io/2020/08/24/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/2-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%97%85%E6%AF%92/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>安全设备-防病毒 | H4ckCgl'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">H4ckCgl'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">走的慢，走的稳</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-存档">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>存档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://h4ckcgl.github.io/2020/08/24/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/2-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%97%85%E6%AF%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="H4ckCgl">
+      <meta itemprop="description" content="走的慢，走的稳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4ckCgl'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安全设备-防病毒
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 08:42:14 / Modified: 15:14:58" itemprop="dateCreated datePublished" datetime="2020-08-24T08:42:14+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">安全设备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h3><p>​    <strong>广义病毒定义</strong>：能够引起计算机故障，破坏计算机数据的程序统记为计算机病毒。法律规定计算机病毒是指编织或者在计算机程序中插入破坏计算机功能或损坏计算机数据，影响计算机的使用并能自我复制的计算机指令或代码程序。    </p>
+<p>​    <strong>狭义病毒定义</strong>：主要指传统型病毒，即依靠感染宿主文件，当宿主文件执行被加载时，病毒文件爆发并传播。</p>
+<p>​    广义病毒：狭义病毒、蠕虫、木马。</p>
+<h3 id="0x01-分类"><a href="#0x01-分类" class="headerlink" title="0x01 分类"></a>0x01 分类</h3><p>​    <strong>引导型病毒：</strong>是一种在rom bios之后，系统引导时出现的病毒，他先与操作系统。依托环境是BIOS服务程序。使病毒看似正常，实际病毒已隐藏在系统并伺机传染发作。</p>
+<p>​        引导型病毒是在操作系统之前进入内存的，寄生对象相对稳固。此方法主要是为了减少操作系统所掌握的内存容量方法来驻留内存高端。</p>
+<p>​        引导型病毒在感染病毒时，必定驻留系统的猪引导扇区或者引导扇区，并且驻留一次。因此引导型病毒主要是通过软盘启动过程中把病毒传给硬盘。</p>
+<p>​    <strong>宏病毒：</strong>（宏是能组织到一起作为独立的命令。使用一系列的指令使日常工作变得简单）通过执行文件感染目标系统文件。</p>
+<p>​        传播途径：存储介质、网络共享、电子邮件等方式。</p>
+<p>​    <strong>文件型病毒：</strong>主要是指感染可执行文件的（exe、com）的病毒。ta会隐藏到宿主文件中，执行宿主程序时，会先执行病毒程序在执行宿主程序。</p>
+<p>​    <strong>邮件病毒：</strong>电子邮件中包含病毒，通过发送电子邮件是宿主机被感染病毒方式。</p>
+<p>​    <strong>网站脚本病毒：</strong>利用脚本编程（py、java、javascript等）的通过浏览器传播并感染计算机的病毒。</p>
+<p>​    <strong>特洛伊木马：</strong>后门。（不会自动转发）</p>
+<p>​    <strong>蠕虫：</strong>破坏性极强，传播性极高，造成的损失极其惨重。</p>
+<h3 id="0x02-特征"><a href="#0x02-特征" class="headerlink" title="0x02 特征"></a>0x02 特征</h3><p>​    潜伏性、传染性、可执行性、破坏性、针对性、隐蔽性。</p>
+<h3 id="0x03-部署方式"><a href="#0x03-部署方式" class="headerlink" title="0x03 部署方式"></a>0x03 部署方式</h3><p>​    防病毒设备一般采用c/s方式部署。</p>
+<h3 id="0x04-病毒结构"><a href="#0x04-病毒结构" class="headerlink" title="0x04 病毒结构"></a>0x04 病毒结构</h3><p>​    引导模块：将病毒主体引导入内存并未传染模块提供环境。</p>
+<p>​    传染模块：将病毒传染到其他程序上。</p>
+<p>​    破坏模块：有潜伏期，只有满足条件才能活动。</p>
+<h3 id="0x05-防病毒设备运行原理（百度百科）"><a href="#0x05-防病毒设备运行原理（百度百科）" class="headerlink" title="0x05 防病毒设备运行原理（百度百科）"></a>0x05 防病毒设备运行原理（百度百科）</h3><p>​    从反病毒产品对计算机病毒的作用来讲，防毒技术可以直观地分为：病毒预防技术、病毒检测技术及病毒清除技术。 [1] </p>
+<h4 id="预防技术"><a href="#预防技术" class="headerlink" title="预防技术"></a>预防技术</h4><p>计算机病毒的预防技术就是通过一定的技术手段防止计算机病毒对系统的传染和破坏。实际上这是一种动态判定技术，即一种行为规则判定技术。也就是说，计算机病毒的预防是采用对病毒的规则进行分类处理，而后在程序运作中凡有类似的规则出现则认定是计算机病毒。具体来说，计算机病毒的预防是通过阻止计算机病毒进入系统内存或阻止计算机病毒对磁盘的操作，尤其是写操作。预防病毒技术包括：磁盘引导区保护、加密可执行程序、读写控制技术、系统监控技术等。例如，大家所熟悉的防病毒卡，其主要功能是对磁盘提供写保护，监视在计算机和驱动器之间产生的信号。以及可能造成危害的写命令，并且判断磁盘当前所处的状态：哪一个磁盘将要进行写操作，是否正在进行写操作，磁盘是否处于写保护等，来确定病毒是否将要发作。计算机病毒的预防应用包括对已知病毒的预防和对未知病毒的预防两个部分。目前，对已知病毒的预防可以采用特征判定技术或静态判定技术，而对未知病毒的预防则是一种行为规则的判定技术，即动态判定技术。</p>
+<h4 id="检测病毒技术"><a href="#检测病毒技术" class="headerlink" title="检测病毒技术"></a>检测病毒技术</h4><p>计算机病毒的检测技术是指通过一定的技术手段判定出特定计算机病毒的一种技术。它有两种：一种是根据计算机病毒的关键字、特征程序段内容、病毒特征及传染方式、文件长度的变化，在特征分类的基础上建立的病毒检测技术。另一种是不针对具体病毒程序的自身校验技术。即对某个文件或数据段进行检验和计算并保存其结果，以后定期或不定期地以保存的结果对该文件或数据段进行检验，若出现差异，即表示该文件或数据段完整性已遭到破坏，感染上了病毒，从而检测到病毒的存在。</p>
+<h4 id="清除病毒技术"><a href="#清除病毒技术" class="headerlink" title="清除病毒技术"></a>清除病毒技术</h4><p>计算机病毒的清除技术是计算机病毒检测技术发展的必然结果，是计算机病毒传染程序的一种逆过程。目前，清除病毒大都是在某种病毒出现后，通过对其进行分析研究而研制出来的具有相应解毒功能的软件。这类软件技术发展往往是被动的，带有滞后性。而且由于计算机软件所要求的精确性，解毒软件有其局限性，对有些变种病毒的清除无能为力。目前市场上流行的Intel公司的PC_CILLIN、CentralPoint公司的CPAV，及我国的LANClear和Kill89等产品均采用上述三种防病毒技术。</p>
+<p>​    </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/" rel="tag"># 安全设备</a>
+              <a href="/tags/%E9%98%B2%E7%97%85%E6%AF%92/" rel="tag"># 防病毒</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/18/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87/0-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AF%87-%E9%98%B2%E7%81%AB%E5%A2%99/" rel="prev" title="安全设备篇:防火墙">
+      <i class="fa fa-chevron-left"></i> 安全设备篇:防火墙
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">0x00 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">0x01 分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-%E7%89%B9%E5%BE%81"><span class="nav-number">3.</span> <span class="nav-text">0x02 特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">0x03 部署方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E7%97%85%E6%AF%92%E7%BB%93%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">0x04 病毒结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-%E9%98%B2%E7%97%85%E6%AF%92%E8%AE%BE%E5%A4%87%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%EF%BC%88%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">0x05 防病毒设备运行原理（百度百科）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF"><span class="nav-number">6.1.</span> <span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E7%97%85%E6%AF%92%E6%8A%80%E6%9C%AF"><span class="nav-number">6.2.</span> <span class="nav-text">检测病毒技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E7%97%85%E6%AF%92%E6%8A%80%E6%9C%AF"><span class="nav-number">6.3.</span> <span class="nav-text">清除病毒技术</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="H4ckCgl"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">H4ckCgl</p>
+  <div class="site-description" itemprop="description">走的慢，走的稳</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/" title="GitHub → https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">[object Object]</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
